@@ -269,6 +269,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8D%E7%94%A8Java%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3%E7%9A%84%E5%BC%80%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dragonwarrior">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dragonwarrior">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8D%E7%94%A8Java%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3%E7%9A%84%E5%BC%80%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%91/" itemprop="url">记一次修复用Java汉字转拼音的开源代码的坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-15T18:09:55+08:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发中遇到的问题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>有这么一个需求，把汉字转为拼音。首先分析这个需求，猜想网上肯定很多现成的类库，而且印象里有象Pinyin4j这样的库很多，甚至想过要加入字典来实现，后来经过考量，首先的话这是一个很小的需求，并非主要业务，其次的话这个转换后的拼音可以用户手动纠正，也就是说这只是个辅助输入的功能。<br>输入部分就不说了，很简单给textview加个监听器，当输入完成后去读取然后转换。经过多方查询，了解到有这么一个HanziToPinyin的类，这个是从早期的Android代码里提取出来的，源自4.2的代码，并且采用的人数还不少。根据之前的代码已经解决了关于地区的问题。<br>尝试引入，这种类的引入很简单，把代码cv过来就行了。（代码贴在后面）测试一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static String getPinYin(String hanzi) &#123;</span><br><span class="line">        ArrayList&lt;HanZiToPinYin.Token&gt; tokens &#x3D; HanZiToPinYin.getInstance().get(hanzi);</span><br><span class="line">        StringBuilder sb &#x3D; new StringBuilder();</span><br><span class="line">        if (tokens !&#x3D; null &amp;&amp; tokens.size() &gt; 0) &#123;</span><br><span class="line">            for (HanZiToPinYin.Token token : tokens) &#123;</span><br><span class="line">                if (HanZiToPinYin.Token.PINYIN &#x3D;&#x3D; token.type) &#123;</span><br><span class="line">                    sb.append(token.target);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    sb.append(token.source);</span><br><span class="line">                &#125;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString().toLowerCase();</span><br></pre></td></tr></table></figure>
+<p>在5.1.1的系统上测试没问题，提测之后遇到了问题，在测试得8.0以上的系统中，大概在拼音p之前的转换成功，但之后的字会转换失败。</p>
+<hr>
+<h2 id="分析问题"><a href="#分析问题" class="headerlink" title="分析问题"></a>分析问题</h2><p>分析问题就要分析代码了，之前有看过原理，大概原理就是这样子的。<br>这个类里面维护了两个数组，一个是根据所有拼音得开头分割点得汉字得unicode的数组。例如a的开头的第一个字是啊，对应的“\u554a”这类得，另一个数组维护了这个字到拼音的映射的ASCLL数组。例如a是[‘26’,’0’,’0’,’0’,’0’,’0’]。然后根据传入的字进行二分查找，利用java自带的Collator的compare方法返回两个汉字的顺寻进行查找。查找效率很高。<br>但很诡异的是在旧版本的系统上这个运行没有问题，在8.0之后产生了问题，第一个猜想是因为8.0的String.getBytes()返回有问题，但全局查找没有用到，从此处怀疑可能是编码有变化。<br>后来经过各种姿势的查证，并非编码变化。问题，最后将希望寄居在对比过程。<br>用log打出同一个字的对比过程，将正确与错误的流程进行对比，发现在目标字与“狅”（狂的错字版本）对比的时候，正确的版本返回了错误的结果，例如“你”cmp”狅”时，应该是返回-1，因为n在k的后面，但结果却返回了1，经过对字表的查证，发现“狅”的位置应该是对应“qing”的读音。破案了。</p>
+<hr>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>找打了问题来源，就好解决了，把狅替换为“qing”读音开头的第一个字，例如“青”的unicode码。<br>修复了这个问题，而这个问题在之前正确的本质应该是错和错对应了对。<del>以毒攻毒</del>，这应该也是之前旧版本的cmp方法存在的问题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/%E4%B8%80%E6%AC%A1%E5%9B%A0%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%B7%E6%A0%BC%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -608,7 +757,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -630,7 +779,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
