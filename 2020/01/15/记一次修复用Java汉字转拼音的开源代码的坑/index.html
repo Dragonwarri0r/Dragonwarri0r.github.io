@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="汉字转拼音,Android," />
+  <meta name="keywords" content="Android,汉字转拼音," />
 
 
 
@@ -89,14 +89,14 @@
 <meta name="description" content="遇到问题有这么一个需求，把汉字转为拼音。首先分析这个需求，猜想网上肯定很多现成的类库，而且印象里有象Pinyin4j这样的库很多，甚至想过要加入字典来实现，后来经过考量，首先的话这是一个很小的需求，并非主要业务，其次的话这个转换后的拼音可以用户手动纠正，也就是说这只是个辅助输入的功能。输入部分就不说了，很简单给textview加个监听器，当输入完成后去读取然后转换。经过多方查询，了解到有这么一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次修复用Java汉字转拼音的开源代码的坑">
-<meta property="og:url" content="http://yoursite.com/2020/01/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8D%E7%94%A8Java%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3%E7%9A%84%E5%BC%80%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%91/index.html">
+<meta property="og:url" content="http://dragonwarrior.pub/2020/01/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8D%E7%94%A8Java%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3%E7%9A%84%E5%BC%80%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%91/index.html">
 <meta property="og:site_name" content="Dragonwarrior">
 <meta property="og:description" content="遇到问题有这么一个需求，把汉字转为拼音。首先分析这个需求，猜想网上肯定很多现成的类库，而且印象里有象Pinyin4j这样的库很多，甚至想过要加入字典来实现，后来经过考量，首先的话这是一个很小的需求，并非主要业务，其次的话这个转换后的拼音可以用户手动纠正，也就是说这只是个辅助输入的功能。输入部分就不说了，很简单给textview加个监听器，当输入完成后去读取然后转换。经过多方查询，了解到有这么一个">
 <meta property="article:published_time" content="2020-01-15T10:09:55.000Z">
 <meta property="article:modified_time" content="2020-01-16T08:04:55.756Z">
 <meta property="article:author" content="Dragonwarrior">
-<meta property="article:tag" content="汉字转拼音">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="汉字转拼音">
 <meta name="twitter:card" content="summary">
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/15/记一次修复用Java汉字转拼音的开源代码的坑/"/>
+  <link rel="canonical" href="http://dragonwarrior.pub/2020/01/15/记一次修复用Java汉字转拼音的开源代码的坑/"/>
 
 
 
@@ -270,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8D%E7%94%A8Java%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3%E7%9A%84%E5%BC%80%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%91/">
+    <link itemprop="mainEntityOfPage" href="http://dragonwarrior.pub/2020/01/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8D%E7%94%A8Java%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3%E7%9A%84%E5%BC%80%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dragonwarrior">
@@ -384,9 +384,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3/" rel="tag"># 汉字转拼音</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3/" rel="tag"># 汉字转拼音</a>
           
         </div>
       
@@ -408,6 +408,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/06/Android%E5%8F%AF%E8%87%AA%E7%94%B1%E6%8B%96%E6%8B%BD%E6%8E%A7%E4%BB%B6%E7%BB%84%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="prev" title="Android可自由拖拽控件组的实现">
+                Android可自由拖拽控件组的实现 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -484,7 +488,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -495,7 +499,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -506,7 +510,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
