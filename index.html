@@ -269,6 +269,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonwarrior.pub/2020/04/03/Android%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dragonwarrior">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dragonwarrior">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/03/Android%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" itemprop="url">Android启动流程分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T16:47:22+08:00">
+                2020-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
+                    <span itemprop="name">Android分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h3 id="启动流程大体分为以下"><a href="#启动流程大体分为以下" class="headerlink" title="启动流程大体分为以下"></a>启动流程大体分为以下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化引导，这部分启动默认是电源键信号引导bootloader</span><br><span class="line">2. 初始化bootloader，这一阶段就是手机的第一屏，一般这个阶段就是引导程序。</span><br><span class="line">注：bootloader默认是由厂商为了安全起见加锁的，但是有些机器可以跟官方申请解锁码进行解锁，解锁后方便root，刷写第三方Recovery与其他系统等。可以说完美Root与刷写第三方引导程序都是bl解锁的必要条件。同时绝大多是机器硬件保证了未解锁的bootloader版本只能升级不能降级，有些黑砖的手机就是bl所引发的。</span><br><span class="line">而boot loader默认是接受启动系统的引导的命令，但是可以通过其他按键组合发送信号来指定其他引导方式，例如常见的更新系统就是保存引导到REC的信号进入Rec进行刷写系统进行升级。</span><br><span class="line">3.一般经由bootloader两个阶段后第二阶段会拉起操作系统的内核，设置缓存，被保护的驱动器，计划列表，加载驱动等完成后拉起init.rc。</span><br><span class="line">4.进入init进程中，首先创建挂载tmpfs，devpts，process，sysfs和selinuxfs五种文件系统，均为运行时目录。</span><br><span class="line">紧接着启动属性服务，设置子进程信号处理函数</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="分析问题"><a href="#分析问题" class="headerlink" title="分析问题"></a>分析问题</h2><hr>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://dragonwarrior.pub/2020/03/08/%E3%80%90%E9%9A%8F%E8%AE%B0%E3%80%91%E4%B8%89%E6%98%9F%E7%A7%BB%E5%8A%A8%E5%AE%9A%E5%88%B6%E7%89%88%E7%A0%B4%E8%A7%A3%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1059,7 +1205,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1070,7 +1216,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1081,7 +1227,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
